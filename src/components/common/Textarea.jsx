@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const TextareaContainer = styled.div`
   width: 550px;
@@ -26,12 +27,29 @@ const TextareaField = styled.textarea`
   }
 `;
 
-const Textarea = ({ placeholder }) => {
+const Textarea = ({ placeholder, onTextareaChange, value }) => {
+
+  const handleChange = (event) => {
+    const newValue = event.target.value;
+
+    onTextareaChange(newValue);
+  };
+
   return (
     <TextareaContainer>
-      <TextareaField placeholder={placeholder} />
+      <TextareaField
+        placeholder={placeholder}
+        value={value}
+        onChange={handleChange}
+      />
     </TextareaContainer>
   );
+};
+
+Textarea.propTypes = {
+  placeholder: PropTypes.string.isRequired,
+  onTextareaChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 export default Textarea;

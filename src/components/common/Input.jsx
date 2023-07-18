@@ -22,16 +22,30 @@ const InputField = styled.input`
   text-indent: 20px;
   border: 1px solid transparent;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border-color: #AD6CFF;
   }
-
 `;
 
-const Input = ({ type, placeholder }) => {
+const Input = ({ type, placeholder, field, onInputChange, value }) => {
+  // const [inputValue, setInputValue] = useState(value);
+
+  const handleChange = (event) => {
+    const newValue = event.target.value;
+    // setInputValue(newValue);
+
+    onInputChange(field, newValue);
+  };
+
   return (
     <InputContainer>
-      <InputField type={type} placeholder={placeholder} />
+      <InputField
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={handleChange}
+      />
     </InputContainer>
   );
 };
@@ -39,6 +53,9 @@ const Input = ({ type, placeholder }) => {
 Input.propTypes = {
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-}
+  field: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
 
 export default Input;

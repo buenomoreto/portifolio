@@ -21,12 +21,13 @@ const ButtonElement = styled.button`
   }
 `;
 
-const Button = ({ children }) => {
-  return <ButtonElement>{children}</ButtonElement>;
+const Button = ({ children, takeAction }) => {
+  return <ButtonElement onClick={takeAction}>{children}</ButtonElement>;
 };
 
 Button.propTypes = {
-  children: PropTypes.string.isRequired
-}
+  children: PropTypes.string.isRequired,
+  takeAction: PropTypes.func.isRequired
+};
 
 export default Button;

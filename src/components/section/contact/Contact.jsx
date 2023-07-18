@@ -1,92 +1,127 @@
-import styled from 'styled-components';
+import { useState } from 'react';
+import api from "../../../services/api";
+import {
+  Container,
+  Section,
+  DivIcons,
+  MessageContainer,
+  Message,
+} from './style';
 import FloatingText from '../../common/floatingText';
 import Input from '../../common/Input';
 import Textarea from '../../common/Textarea';
 import Button from '../../common/Button';
-import Facebook from './img/facebook.svg';
-import Instagram from './img/instagram.svg';
 import Linkedin from './img/linkedin.svg';
 
-const Container = styled.section`
-  background-color: #1D1D1D;
-  padding: 70px 0px;
-
-  @media (max-width: 1023px) {
-    padding: 60px 0;
-  }
-`
-const Section = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  h2 {
-    font-size: 36px;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.87);
-  }
-  p {
-    max-width: 500px;
-  }
-  
-  @media (max-width: 1023px) {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 50px;
-
-    h2 {
-      font-size: 20px;
-    }
-    
-    p {
-      font-size: 12px;
-      max-width: 240px;
-    }
-
-  }
-`;
-
-const DivIcons = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`
 const inputs = [
-  {type: 'text', placeholder: 'Nome'}, 
-  {type: 'text', placeholder: 'Tipo de projeto'}, 
-  {type: 'email', placeholder: 'E-mail'},  
-]
+  { type: 'text', placeholder: 'Nome', field: 'name' },
+  { type: 'text', placeholder: 'Tipo de projeto', field: 'typeProject' },
+  { type: 'email', placeholder: 'E-mail', field: 'email' },
+];
 
 function Contact() {
+  const [payload, setPayload] = useState({
+    name: '',
+    typeProject: '',
+    email: '',
+    message: '',
+  });
+  const [notification, setNotification] = useState({ message: '', success: false });
+
+  const handleInputChange = (field, value) => {
+    setNotification({ message: '', success: false });
+    setPayload((prevPayload) => ({
+      ...prevPayload,
+      [field]: value,
+    }));
+  };
+
+  const handleTextareaChange = (value) => {
+    setNotification({ message: '', success: false });
+    setPayload((prevPayload) => ({
+      ...prevPayload,
+      message: value,
+    }));
+  };
+
+  const validateForm = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (
+      payload.name === '' ||
+      payload.typeProject === '' ||
+      payload.email === '' ||
+      payload.message === ''
+    ) {
+      setNotification({
+        message: 'Por favor, preencha todos os campos.',
+        success: false
+      });
+      setTimeout(() => {
+        setNotification({ message: '', success: false });
+      }, 3000);
+      return false;
+    }
+
+    if (!emailRegex.test(payload.email)) {
+      setNotification({
+        message: 'Por favor, digite um email válido.',
+        success: false
+      });
+      setTimeout(() => {
+        setNotification({ message: '', success: false });
+      }, 3000);
+      return false;
+    }
+
+    return true;
+  };
+
+  const submit = () => {
+    if (!validateForm()) {
+      return;
+    }
+
+    api
+      .post('/contact', payload)
+      .then((response) => {
+        setNotification({ message: response.data.message, success: true });
+        setTimeout(() => {
+          setNotification({ message: '', success: false });
+        }, 3000);
+        setPayload({
+          name: '',
+          typeProject: '',
+          email: '',
+          message: '',
+        });
+      })
+      .catch((err) => {
+        setNotification({ message: 'Ocorreu um erro ao enviar a mensagem.', success: false });
+        setTimeout(() => {
+          setNotification({ message: '', success: false });
+        }, 3000);
+        console.error(err);
+      });
+  };
+
+  const handleButtonClick = () => {
+    submit();
+  };
+
   return (
-    <Container className='section'>
+    <Container className='container'>
       <Section className='row'>
         <div>
-          <h2>
-            Vamos trabalhar juntos!
-          </h2>
+          <h2>Vamos trabalhar juntos!</h2>
           <p className='paragraph'>
-            Entre em contato comigo por <b className='emphasis'>e-mail</b> ou por <br/> 
+            Entre em contato comigo por <b className='emphasis'>e-mail</b> ou por <br />
             minhas <b className='emphasis'>redes sociais</b>.
           </p>
           <DivIcons>
-            <a 
-              target="_blank" 
-              rel="noreferrer"
-              href="https://www.facebook.com/felipe.moreto.9"
-            >
-              <img src={Facebook} alt="facebook" />
-            </a>
-            <a 
-              target="_blank" 
-              href="https://www.instagram.com/felype_moretto/" 
-              rel="noreferrer"
-            >
-              <img src={Instagram} alt="instagram" />
-            </a>
-            <a 
-              target="_blank" 
-              href="https://www.linkedin.com/in/felipe-bueno-a58912198/" 
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/in/felipe-bueno-a58912198/"
               rel="noreferrer"
             >
               <img src={Linkedin} alt="linkedin" />
@@ -94,15 +129,31 @@ function Contact() {
           </DivIcons>
         </div>
         <div>
-          <form>
-            {
-              inputs.map((input) => <Input type={input.type} placeholder={input.placeholder} />)
-            }
-            <Textarea placeholder="Digite sua mensagem" />
-            <Button>Enviar</Button>
-          </form>
+          {notification.message && (
+            <MessageContainer>
+              <Message success={notification.success.toString()}>
+                {notification.message}
+              </Message>
+            </MessageContainer>
+          )}
+          {inputs.map((input) => (
+            <Input
+              key={input.placeholder}
+              type={input.type}
+              placeholder={input.placeholder}
+              field={input.field}
+              onInputChange={handleInputChange} 
+              value={payload[input.field]}
+            />
+          ))}
+          <Textarea
+            placeholder="Digite sua mensagem"
+            onTextareaChange={handleTextareaChange}
+            value={payload.message}
+          />
+          <Button takeAction={handleButtonClick}>Enviar</Button>
         </div>
-        { window.innerWidth > 768 &&  <FloatingText text="Contato"  /> }
+        {window.innerWidth > 768 && <FloatingText text="Contato" />}
       </Section>
     </Container>
   );

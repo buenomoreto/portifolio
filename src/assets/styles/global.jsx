@@ -97,7 +97,7 @@ const GlobalStyles = createGlobalStyle`
     color: #AD6CFF;
   }
 
-  .section {
+  .container {
     position: relative;
     overflow: hidden;
   }
@@ -107,6 +107,7 @@ const GlobalStyles = createGlobalStyle`
     width: 100%;
     margin: 0 auto;
   }
+  
   .emphasis {
     color: #AD6CFF;
   }
