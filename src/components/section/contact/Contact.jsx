@@ -115,8 +115,8 @@ function Contact() {
         <div>
           <h2>Vamos trabalhar juntos!</h2>
           <p className='paragraph'>
-            Entre em contato comigo por <b className='emphasis'>e-mail</b> ou por <br />
-            minhas <b className='emphasis'>redes sociais</b>.
+            Entre em contato comigo por <strong className='emphasis'>e-mail</strong> ou por <br />
+            minhas <strong className='emphasis'>redes sociais</strong>.
           </p>
           <DivIcons>
             <a

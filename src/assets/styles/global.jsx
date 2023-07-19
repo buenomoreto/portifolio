@@ -118,7 +118,9 @@ const GlobalStyles = createGlobalStyle`
     text-align: left;
     color: rgba(255, 255, 255, 0.87);
   }
-
+  .paragraph strong {
+    color: #AD6CFF;
+  }
 `;
 
 export default GlobalStyles;

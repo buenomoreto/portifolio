@@ -50,7 +50,7 @@ function Footer() {
       <div className="scrollToTopButton" onClick={handleScrollToTop}>
         <img src={Arrow} alt="Top web site" />
       </div>
-      <span>FELIPE BUENO <b className='emphasis'>©{currentYear}</b></span>
+      <span>FELIPE BUENO <strong className='emphasis'>©{currentYear}</strong></span>
       </StyledFooter>
   );
 }

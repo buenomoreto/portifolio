@@ -24,7 +24,7 @@ function Header() {
     <Top>
       <h1>
         felipebueno
-        <b className='emphasis'>;</b>
+        <strong className='emphasis'>;</strong>
       </h1>
     </Top>
   );

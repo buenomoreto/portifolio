@@ -28,7 +28,7 @@ const SliderComponent = ({ technology }) => {
             <div className='bg'  />
             <div>
               <h2>{item.title}</h2>
-              <p className='paragraph' dangerouslySetInnerHTML={{ __html: item.description }}></p>
+              <p className='paragraph' dangerouslySetInnerHTML={{ __html: item.description }} />
             </div>
             <img src={item.image} alt={item.title} />
           </DivSlider>
