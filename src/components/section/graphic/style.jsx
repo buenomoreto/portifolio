@@ -32,7 +32,6 @@ const GraphicsFlex = styled.div`
 `;
 
 const GraphicsContainer = styled.div`
-  background: linear-gradient(180deg, rgba(162, 89, 255, 0.1) 0%, rgba(24, 24, 24, 0.1) 100%);
   width: 100%;
   height: 100%;
   display: flex;
@@ -41,12 +40,10 @@ const GraphicsContainer = styled.div`
 `;
 
 const GraphicsItems = styled.div`
+  background: linear-gradient(180deg, rgba(162, 89, 255, 0.1) 0%, rgba(24, 24, 24, 0.1) 100%);  
   position: relative;
   width: 50px;
-  height: ${({ height }) => height ? `${height}%` : 'auto'};
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  margin-bottom: 10px;
+  height: 100%;
   overflow: hidden;
 
   span {
@@ -61,29 +58,33 @@ const GraphicsItems = styled.div`
     color: #fff;
     writing-mode: vertical-rl;
     text-orientation: upright;
+    display: flex;
+    align-items: flex-end;
   }
 
   &:before {
     content: '';
     position: absolute;
-    top: 0;
+    bottom: 0;
     width: 100%;
-    height: 100%;
-    background-image: radial-gradient(circle, rgba(162, 89, 255) 0, transparent 100%);
+    height: ${({ height }) => height ? `${height}%` : 'auto'};
+    background-image: radial-gradient(circle, rgba(162, 89, 255) 0%, transparent 100%);
     background-position: 0 0;
     background-size: 200% 200%;
-    animation: waterEffect 3s infinite linear;
+    animation: waterEffect 5s infinite linear;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
   }
 
   @keyframes waterEffect {
     0% {
-      background-position: 0 0;
+      background-position: 0% 0%;
     }
     50% {
       background-position: 100% 100%;
     }
     100% {
-      background-position: 0 0;
+      background-position: 0% 0%;
     }
   }
 

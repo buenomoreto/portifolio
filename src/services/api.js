@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localizabus.com.br:21078/",
+  baseURL: "https://portifolio-backend-beryl.vercel.app/",
 });
 
 export default api;

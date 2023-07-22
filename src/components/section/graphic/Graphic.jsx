@@ -8,7 +8,7 @@ import {
 } from './style';
 
 const technology = ['VUE JS', 'REACT', 'CSS', 'HTML', 'JAVASCRIPT', 'NODEJS', 'TYPESCRIPT'];
-const heights = [95, 85, 97, 97, 95, 90, 75];
+const heights = [95, 85, 100, 100, 95, 90, 80];
 
 function Graphic() {
   return (
