@@ -4,10 +4,10 @@ import {
   DivSlider
 } from './styles';
 import Slider from "react-slick";
-import FloatingText from '../../common/floatingText';
+import FloatingText from '../../common/FloatingText';
 import { technology } from './technology';
 import PropTypes from 'prop-types';
-
+import ScrollAnimation from 'react-animate-on-scroll';
 
 const SliderComponent = ({ technology }) => {
   const settings = {
@@ -17,7 +17,7 @@ const SliderComponent = ({ technology }) => {
     fade: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: false
+    rrows: false
   };
 
   return (
@@ -46,7 +46,9 @@ function Skills() {
   return (
     <Container className='container'>
       <Section className='row'>
-        <SliderComponent technology={technology} />
+        <ScrollAnimation animateIn='bounceInRight' offset={0} animatePreScroll={false}>
+          <SliderComponent technology={technology} />
+        </ScrollAnimation>
         <FloatingText text="HABILIDADES" />
       </Section>
     </Container>

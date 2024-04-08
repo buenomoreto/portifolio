@@ -33,12 +33,12 @@ export const technology = [
     image: nodejsImage
   },
   {
-    title: 'HTML',
-    description: 'Tenho um conhecimento completo e abrangente em <strong>HTML</strong>, capaz de criar estruturas e elementos semânticos. Familiarizado com as melhores práticas de acessibilidade e otimização, garanto uma experiência de usuário aprimorada. Com expertise em <strong>HTML5</strong>, crio layouts responsivos e interativos.',
+    title: 'HTML5',
+    description: 'Tenho um conhecimento completo e abrangente em <strong>HTML5</strong>, capaz de criar estruturas e elementos semânticos. Familiarizado com as melhores práticas de acessibilidade e otimização, garanto uma experiência de usuário aprimorada. Com expertise em <strong>HTML5</strong>, crio layouts responsivos e interativos.',
     image: htmlImage
   },
   {
-    title: 'CSS',
+    title: 'CSS3',
     description: 'Conhecimento completo em <strong>CSS</strong>, com domínio de 100%, permitindo criar estilos personalizados e aplicar formatação precisa em elementos HTML. <strong>Layouts flexíveis</strong>: Proficiência em seletores <strong>CSS</strong>, propriedades de estilo e unidades de medida, possibilitando criar <strong>Layouts flexíveis</strong> e responsivos. Animações e interatividade: Familiaridade com conceitos avançados de <strong>CSS</strong>, como animações, transformações e transições, para adicionar interatividade e melhorar a experiência do usuário.',
     image: cssImage
   }

@@ -7,11 +7,12 @@ import {
   MessageContainer,
   Message,
 } from './style';
-import FloatingText from '../../common/floatingText';
+import FloatingText from '../../common/FloatingText';
 import Input from '../../common/Input';
 import Textarea from '../../common/Textarea';
 import Button from '../../common/Button';
 import Linkedin from './img/linkedin.svg';
+import ScrollAnimation from 'react-animate-on-scroll';
 
 const inputs = [
   { type: 'text', placeholder: 'Nome', field: 'name' },
@@ -136,22 +137,24 @@ function Contact() {
               </Message>
             </MessageContainer>
           )}
-          {inputs.map((input) => (
-            <Input
-              key={input.placeholder}
-              type={input.type}
-              placeholder={input.placeholder}
-              field={input.field}
-              onInputChange={handleInputChange} 
-              value={payload[input.field]}
+          <ScrollAnimation animateIn='flipInX'>
+            {inputs.map((input) => (
+              <Input
+                key={input.placeholder}
+                type={input.type}
+                placeholder={input.placeholder}
+                field={input.field}
+                onInputChange={handleInputChange} 
+                value={payload[input.field]}
+              />
+            ))}
+            <Textarea
+              placeholder="Digite sua mensagem"
+              onTextareaChange={handleTextareaChange}
+              value={payload.message}
             />
-          ))}
-          <Textarea
-            placeholder="Digite sua mensagem"
-            onTextareaChange={handleTextareaChange}
-            value={payload.message}
-          />
-          <Button takeAction={handleButtonClick}>Enviar</Button>
+            <Button takeAction={handleButtonClick}>Enviar</Button>
+          </ScrollAnimation>
         </div>
         {window.innerWidth > 768 && <FloatingText text="Contato" />}
       </Section>
