@@ -4,7 +4,7 @@ import {
   DivSlider
 } from './styles';
 import Slider from "react-slick";
-import FloatingText from '../../common/FloatingText';
+import FloatingText from '../../common/floatingText';
 import { technology } from './technology';
 import PropTypes from 'prop-types';
 import ScrollAnimation from 'react-animate-on-scroll';

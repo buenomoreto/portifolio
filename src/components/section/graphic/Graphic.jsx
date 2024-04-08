@@ -1,5 +1,5 @@
 import ScrollAnimation from 'react-animate-on-scroll';
-import FloatingText from '../../common/FloatingText';
+import FloatingText from '../../common/floatingText';
 import {
   Container, 
   Section, 

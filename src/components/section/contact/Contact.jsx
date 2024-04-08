@@ -7,7 +7,7 @@ import {
   MessageContainer,
   Message,
 } from './style';
-import FloatingText from '../../common/FloatingText';
+import FloatingText from '../../common/floatingText';
 import Input from '../../common/Input';
 import Textarea from '../../common/Textarea';
 import Button from '../../common/Button';

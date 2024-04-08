@@ -2,7 +2,7 @@ import {
   Container, 
   Section 
 } from './style';
-import FloatingText from '../../common/FloatingText'
+import FloatingText from '../../common/floatingText';
 import Slider from "react-slick";
 import ScrollAnimation from 'react-animate-on-scroll';
 
